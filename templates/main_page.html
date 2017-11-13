@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<body>
+    <h2>Cyber Security New York Times Articles</h2>
+      <table border="1">
+          <tr><td>Title</td><td>Date</td><td>Description</td></tr>
+    {% for article in gen %}
+    <tr><td><a href={{article.link}}>{{article.title}}</a></td><td>{{article.desc}}</td><td>{{article.date}}</td></tr>
+    {% endfor %}
+      </table>
+    <P></P>
+    <form action="/update" method="get">
+        <button type="submit">Update</button> <p id="bPrice">Bitcoin Price: </p>
+    </form>
+    <P></P>
+    <a href="https://blockchain.info/charts/market-price">Bitcoin Price Chart</a>
+    <script>
+        console.log("Ran");
+        json = $.getJSON('https://api.coindesk.com/v1/bpi/currentprice.json');
+        console.log(json)
+    </script>
+</body>
+</html>
